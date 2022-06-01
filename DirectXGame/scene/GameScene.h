@@ -12,6 +12,7 @@
 #include "DebugCamera.h"
 #include "Transform.h"
 #include "Player.h"
+#include "PlayerBullet.h"
 
 /// <summary>
 /// ゲームシーン

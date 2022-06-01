@@ -1,4 +1,5 @@
 #include "Player.h"
+#define PI 3.1415
 
 void Player::Initialize(Model* model, uint32_t textureHandle, ViewProjection viewProjection)
 {
@@ -18,16 +19,30 @@ void Player::Initialize(Model* model, uint32_t textureHandle, ViewProjection vie
 void Player::Update()
 {
 	Move();
+	Rotation();
+
+	Attack();
+	if (bullet_ && input_->TriggerKey(DIK_SPACE))
+	{
+		bullet_->Update();
+	}
+
 	worldTransform_.TransferMatrix();
 
 	debugText_->SetPos(50, 150);
-	debugText_->Printf("%f.%f.%f",worldTransform_.matWorld_.m[3][0],
-		worldTransform_.matWorld_.m[3][1], worldTransform_.matWorld_.m[3][2]);
+	debugText_->Printf("%f.%f.%f",worldTransform_.matWorld_.m[0][2],
+		worldTransform_.matWorld_.m[2][2], worldTransform_.matWorld_.m[1][2]);
 }
 
 void Player::Draw()
 {
 	model_->Draw(worldTransform_, viewProjection_, textureHandle_);
+
+	if (bullet_)
+	{
+		bullet_->Draw(viewProjection_);
+	}
+
 }
 
 void Player::Move()
@@ -63,4 +78,37 @@ void Player::Move()
 	worldTransform_.matWorld_.m[3][1] = min(worldTransform_.matWorld_.m[3][1], +kMoveLimitY);
 
 	worldTransformMove(&worldTransform_, move.x, move.y, move.z);
+}
+
+void Player::Rotation()
+{
+	if (input_->PushKey(DIK_Z))
+	{
+		role = 0.02;
+	}
+	else if (input_->PushKey(DIK_X))
+	{
+		role = -0.02;
+	}
+	else
+	{
+		role = 0;
+	}
+	worldTransformRole(&worldTransform_,0, role, 0);
+
+}
+
+void Player::Attack()
+{
+	//’e‚ð¶¬‚µA‰Šú‰»
+	if (input_->TriggerKey(DIK_SPACE))
+	{
+		PlayerBullet* newBullet = new PlayerBullet();
+		Vector3 bul = { worldTransform_.matWorld_.m[3][0],worldTransform_.matWorld_.m[3][1]
+			,worldTransform_.matWorld_.m[3][2] };
+		newBullet->Initialize(model_, bul);
+
+		//‹…‚ð“o˜^‚·‚é
+		bullet_ = newBullet;
+	}
 }

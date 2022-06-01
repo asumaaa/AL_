@@ -14,32 +14,23 @@
 #include "Matrix4.h"
 #include "DebugText.h"
 #include "Input.h"
-#include "PlayerBullet.h"
 
-class Player
+class PlayerBullet
 {
-
 public:
-	void Initialize(Model* model,uint32_t textureHandle,ViewProjection viewProjection);
+	void Initialize(Model* model, const Vector3& position);
 	void Update();
-	void Draw();
-	void Move();
-	void Rotation();
-
-	void Attack();
+	void Draw(const ViewProjection &viewProjection);
 private:
-	Input* input_ = nullptr;
-	DebugText* debugText_ = nullptr;
+	/*Input* input_ = nullptr;
+	DebugText* debugText_ = nullptr;*/
 	WorldTransform worldTransform_;
 	Model* model_ = nullptr;
 	uint32_t textureHandle_;
-	ViewProjection viewProjection_;
 
-	float speed = 0.2;
-	Vector3 move;
-	float role = 0;
+	Vector3 move = {0,0,0};
+	Vector3 rotation = {0,0,0};
+	Vector3 scale = {1,1,1};
 
-	//’e
-	PlayerBullet* bullet_ = nullptr;
 };
 
