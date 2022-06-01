@@ -1,12 +1,17 @@
 ﻿#include "GameScene.h"
 #include "TextureManager.h"
 #include <cassert>
+#include "math.h"
+#include "Matrix4.h"
+
+#define PI 3.1415
 
 GameScene::GameScene() {}
 
 GameScene::~GameScene() 
 {
 	delete model_;
+	delete debugCamera_;
 }
 
 void GameScene::Initialize() {
@@ -21,13 +26,27 @@ void GameScene::Initialize() {
 
 	//3Dモデルの生成
 	model_ = Model::Create();
+	worldTransform_.scale_ = { 5.0f,1.0f,1.0f };
+	//デバッグカメラの生成
+	debugCamera_ = new DebugCamera(1280, 720);
 	//ワールドトランスフォームの初期化
 	worldTransform_.Initialize();
 	//ビュープロジェクション
 	viewProjection_.Initialize();
+
+	worldTransformScale(&worldTransform_, 5, 5, 5);
+	worldTransformMove(&worldTransform_, 0, 15, 0);
+	worldTransformRole(&worldTransform_, PI/3, PI/3, PI/3);
+
+	worldTransform_.TransferMatrix();
+
 }
 
-void GameScene::Update() {}
+void GameScene::Update() 
+{
+
+	debugCamera_->Update();
+}
 
 void GameScene::Draw() {
 
@@ -57,7 +76,8 @@ void GameScene::Draw() {
 	/// </summary>
 	
 	//3Dモデル描画
-	model_->Draw(worldTransform_, viewProjection_, textureHandle_);
+	/*model_->Draw(worldTransform_, viewProjection_, textureHandle_);*/
+	model_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
