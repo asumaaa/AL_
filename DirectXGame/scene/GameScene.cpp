@@ -10,6 +10,7 @@ GameScene::GameScene() {}
 
 GameScene::~GameScene() 
 {
+	delete player_;
 	delete model_;
 	delete debugCamera_;
 }
@@ -26,25 +27,21 @@ void GameScene::Initialize() {
 
 	//3Dモデルの生成
 	model_ = Model::Create();
-	worldTransform_.scale_ = { 5.0f,1.0f,1.0f };
 	//デバッグカメラの生成
 	debugCamera_ = new DebugCamera(1280, 720);
-	//ワールドトランスフォームの初期化
-	worldTransform_.Initialize();
 	//ビュープロジェクション
 	viewProjection_.Initialize();
 
-	worldTransformScale(&worldTransform_, 5, 5, 5);
-	worldTransformMove(&worldTransform_, 0, 15, 0);
-	worldTransformRole(&worldTransform_, PI/3, PI/3, PI/3);
-
-	worldTransform_.TransferMatrix();
-
+	//自キャラの生成
+	player_ = new Player();
+	//自キャラの初期化
+	player_->Initialize(model_, textureHandle_,viewProjection_);
 }
 
 void GameScene::Update() 
 {
-
+	//自キャラの更新
+	player_->Update();
 	debugCamera_->Update();
 }
 
@@ -76,8 +73,8 @@ void GameScene::Draw() {
 	/// </summary>
 	
 	//3Dモデル描画
-	/*model_->Draw(worldTransform_, viewProjection_, textureHandle_);*/
-	model_->Draw(worldTransform_, debugCamera_->GetViewProjection(), textureHandle_);
+	//自キャラの描画
+	player_->Draw();
 
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();

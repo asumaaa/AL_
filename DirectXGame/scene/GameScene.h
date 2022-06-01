@@ -11,6 +11,7 @@
 #include "WorldTransform.h"
 #include "DebugCamera.h"
 #include "Transform.h"
+#include "Player.h"
 
 /// <summary>
 /// ゲームシーン
@@ -49,6 +50,9 @@ class GameScene {
 	Audio* audio_ = nullptr;
 	DebugText* debugText_ = nullptr;
 
+	//自キャラ
+	Player* player_ = nullptr;
+
 	//テクスチャハンドル
 	uint32_t textureHandle_ = 0;
 
@@ -57,9 +61,6 @@ class GameScene {
 
 	//デバッグカメラ
 	DebugCamera* debugCamera_ = nullptr;
-
-	//ワールドトランスフォーム
-	WorldTransform worldTransform_;
 	//ビュープロジェクション
 	ViewProjection viewProjection_;
 

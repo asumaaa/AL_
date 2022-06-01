@@ -28,9 +28,6 @@
     <Filter Include="ソース ファイル\base">
       <UniqueIdentifier>{551d5cf3-f4a6-49b9-832f-076a33cef817}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\base">
-      <UniqueIdentifier>{74394124-7d35-4440-8404-7b478262b455}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\scene">
       <UniqueIdentifier>{e2d0b4b8-24a1-4854-8e5b-bb6ed09f1add}</UniqueIdentifier>
     </Filter>
@@ -49,6 +46,9 @@
     <Filter Include="ヘッダー ファイル\math">
       <UniqueIdentifier>{647f4977-924a-4954-923f-5619e5afc9a3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\audo\base">
+      <UniqueIdentifier>{74394124-7d35-4440-8404-7b478262b455}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -63,10 +63,13 @@
     <ClCompile Include="base\TextureManager.cpp">
       <Filter>ソース ファイル\base</Filter>
     </ClCompile>
-    <ClCompile Include="scene\GameScene.cpp">
-      <Filter>ソース ファイル\scene</Filter>
-    </ClCompile>
     <ClCompile Include="Transform.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="scene\GameScene.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -114,16 +117,16 @@
       <Filter>ヘッダー ファイル\audo</Filter>
     </ClInclude>
     <ClInclude Include="base\DirectXCommon.h">
-      <Filter>ヘッダー ファイル\base</Filter>
+      <Filter>ヘッダー ファイル\audo\base</Filter>
     </ClInclude>
     <ClInclude Include="base\SafeDelete.h">
-      <Filter>ヘッダー ファイル\base</Filter>
+      <Filter>ヘッダー ファイル\audo\base</Filter>
     </ClInclude>
     <ClInclude Include="base\TextureManager.h">
-      <Filter>ヘッダー ファイル\base</Filter>
+      <Filter>ヘッダー ファイル\audo\base</Filter>
     </ClInclude>
     <ClInclude Include="base\WinApp.h">
-      <Filter>ヘッダー ファイル\base</Filter>
+      <Filter>ヘッダー ファイル\audo\base</Filter>
     </ClInclude>
     <ClInclude Include="scene\GameScene.h">
       <Filter>ヘッダー ファイル\scene</Filter>
@@ -153,6 +156,9 @@
       <Filter>ヘッダー ファイル\3d</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
