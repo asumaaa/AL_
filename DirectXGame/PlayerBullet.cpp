@@ -17,7 +17,8 @@ void PlayerBullet::Initialize(Model* model, const Vector3& position)
 void PlayerBullet::Update()
 {
 	worldTransformScale(&worldTransform_, scale.x, scale.y, scale.z);
-	worldTransformMove(&worldTransform_, worldTransform_.translation_.x, worldTransform_.translation_.y, worldTransform_.translation_.z);
+	worldTransformMove(&worldTransform_, worldTransform_.translation_.x, worldTransform_.translation_.y,
+		worldTransform_.translation_.z);
 	worldTransformRole(&worldTransform_, rotation.x, rotation.y, rotation.z);
 
 	worldTransform_.TransferMatrix();
