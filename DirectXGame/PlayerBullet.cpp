@@ -11,15 +11,15 @@ void PlayerBullet::Initialize(Model* model, const Vector3& position)
 	//ワールド座標初期化
 	worldTransform_.Initialize();
 	//引数で受け取った初期座標をセット
-	worldTransform_.translation_ = { position.x,position.y,position.z };
+	worldTransformTransrationSet(&worldTransform_,position.x, position.y, position.z);
 }
 
 void PlayerBullet::Update()
 {
-	worldTransformScale(&worldTransform_, scale.x, scale.y, scale.z);
-	worldTransformMove(&worldTransform_, worldTransform_.translation_.x, worldTransform_.translation_.y,
+	/*worldTransformScale(&worldTransform_, scale.x, scale.y, scale.z);
+	worldTransformTransrationSet(&worldTransform_, worldTransform_.translation_.x, worldTransform_.translation_.y, 
 		worldTransform_.translation_.z);
-	worldTransformRole(&worldTransform_, rotation.x, rotation.y, rotation.z);
+	worldTransformRole(&worldTransform_, rotation.x, rotation.y, rotation.z);*/
 
 	worldTransform_.TransferMatrix();
 

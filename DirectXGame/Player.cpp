@@ -22,9 +22,9 @@ void Player::Update()
 	Rotation();
 
 	Attack();
-	if (bullet_ && input_->TriggerKey(DIK_SPACE))
+	for (std::unique_ptr<PlayerBullet>& bullet : bullets_)
 	{
-		bullet_->Update();
+		bullet->Update();
 	}
 
 	worldTransform_.TransferMatrix();
@@ -38,9 +38,9 @@ void Player::Draw()
 {
 	model_->Draw(worldTransform_, viewProjection_, textureHandle_);
 
-	if (bullet_)
+	for (std::unique_ptr<PlayerBullet>& bullet : bullets_)
 	{
-		bullet_->Draw(viewProjection_);
+		bullet->Draw(viewProjection_);
 	}
 
 }
@@ -77,6 +77,9 @@ void Player::Move()
 	worldTransform_.matWorld_.m[3][1] = max(worldTransform_.matWorld_.m[3][1], -kMoveLimitY);
 	worldTransform_.matWorld_.m[3][1] = min(worldTransform_.matWorld_.m[3][1], +kMoveLimitY);
 
+	worldTransformRole(&worldTransform_, 1.1, 1, 1);
+
+	debugText_->SetPos(50, 150);
 	worldTransformMove(&worldTransform_, move.x, move.y, move.z);
 }
 
@@ -103,12 +106,12 @@ void Player::Attack()
 	//’e‚ð¶¬‚µA‰Šú‰»
 	if (input_->TriggerKey(DIK_SPACE))
 	{
-		PlayerBullet* newBullet = new PlayerBullet();
-		Vector3 bul = { worldTransform_.matWorld_.m[3][0],worldTransform_.matWorld_.m[3][1]
+		std::unique_ptr<PlayerBullet>newBullet = std:: make_unique<PlayerBullet>();
+		position = { worldTransform_.matWorld_.m[3][0],worldTransform_.matWorld_.m[3][1]
 			,worldTransform_.matWorld_.m[3][2] };
-		newBullet->Initialize(model_, bul);
+		newBullet->Initialize(model_, position);
 
 		//‹…‚ð“o˜^‚·‚é
-		bullet_ = newBullet;
+		bullets_.push_back(std::move(newBullet));
 	}
 }

@@ -54,3 +54,22 @@ void worldTransformRole(WorldTransform *worldTransform_, float x, float y, float
 	matRot *= matRotY;
 	worldTransform_->matWorld_ *= matRot;
 }
+
+void worldTransformScaleSet(WorldTransform* worldTransform_, float x, float y, float z)
+{
+	worldTransform_->matWorld_.m[0][0] = x;
+	worldTransform_->matWorld_.m[0][1] = y;
+	worldTransform_->matWorld_.m[0][2] = z;
+}
+
+void worldTransformTransrationSet(WorldTransform* worldTransform_, float x, float y, float z)
+{
+	worldTransform_->matWorld_.m[3][0] = x;
+	worldTransform_->matWorld_.m[3][1] = y;
+	worldTransform_->matWorld_.m[3][2] = z;
+}
+
+void worldTransformRoleSet(WorldTransform* worldTransform_, float x, float y, float z)
+{
+	worldTransform_->rotation_ = { x,y,z };
+}

@@ -11,3 +11,13 @@ void worldTransformMove(WorldTransform *worldTransform_, float x, float y, float
 
 //WorldTransformの回転の関数
 void worldTransformRole(WorldTransform *worldTransform_, float x, float y, float z);
+
+
+//matWorld_にセット
+void worldTransformScaleSet(WorldTransform* worldTransform_, float x, float y, float z);
+
+//matWorld_にセット
+void worldTransformTransrationSet(WorldTransform* worldTransform_, float x, float y, float z);
+
+//matWorld_にセット
+void worldTransformRoleSet(WorldTransform* worldTransform_, float x, float y, float z);

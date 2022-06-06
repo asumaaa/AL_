@@ -15,6 +15,8 @@
 #include "DebugText.h"
 #include "Input.h"
 #include "PlayerBullet.h"
+#include "memory.h"
+#include "list"
 
 class Player
 {
@@ -40,6 +42,7 @@ private:
 	float role = 0;
 
 	//’e
-	PlayerBullet* bullet_ = nullptr;
+	Vector3 position;
+	std::list<std::unique_ptr<PlayerBullet>> bullets_;
 };
 
