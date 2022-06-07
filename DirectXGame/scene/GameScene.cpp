@@ -34,16 +34,9 @@ void GameScene::Initialize() {
 	//ビュープロジェクション
 	viewProjection_.Initialize();
 
-	/*worldTransformScale(&worldTransform_, 5, 5, 5);
-	worldTransformMove(&worldTransform_, 0, 15, 0);
-	worldTransformRole(&worldTransform_, PI/3, PI/3, PI/3);*/
-
-	//WorldTransformの拡大縮小の関数
-	matScaleSet(&worldTransform_,3,3,3);
-	matRoleSet(&worldTransform_, 1/3*PI, 1/2*PI, 1/3* PI);
-
-	//WorldTransformの平行移動の関数
-	matTransrationSet(&worldTransform_, 0, 0, 0);
+	worldTransformScale(&worldTransform_, 5, 5, 5);
+	worldTransformMove(&worldTransform_, 10, 10, 10);
+	worldTransformRole(&worldTransform_, PI/4, PI/4, PI/4);
 
 	//WorldTransformの回転の関数
 
