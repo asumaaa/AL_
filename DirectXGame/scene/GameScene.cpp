@@ -29,23 +29,27 @@ void GameScene::Initialize() {
 	worldTransform_.scale_ = { 5.0f,1.0f,1.0f };
 	//デバッグカメラの生成
 	debugCamera_ = new DebugCamera(1280, 720);
-	//ワールドトランスフォームの初期化
-	worldTransform_.Initialize();
+	////ワールドトランスフォームの初期化
+	//worldTransform_.Initialize();
 	//ビュープロジェクション
 	viewProjection_.Initialize();
-
-	worldTransformScale(&worldTransform_, 5, 5, 5);
-	worldTransformMove(&worldTransform_, 10, 10, 10);
-	worldTransformRole(&worldTransform_, PI/4, PI/4, PI/4);
-
 	//WorldTransformの回転の関数
 
-	worldTransform_.TransferMatrix();
-
+	/*worldTransform_.TransferMatrix();*/
 }
 
 void GameScene::Update() 
 {
+
+	//ワールドトランスフォームの初期化
+	worldTransform_.Initialize();
+
+	worldTransformScale(&worldTransform_, 5, 5, 5);
+	worldTransformMove(&worldTransform_, 10, 10, 10);
+	worldTransformRole(&worldTransform_, PI / 4, PI / 4, PI / 4);
+
+	//ワールドトランスフォーム転送
+	worldTransform_.TransferMatrix();
 
 	debugCamera_->Update();
 }
