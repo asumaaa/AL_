@@ -77,8 +77,6 @@ void Player::Move()
 	worldTransform_.matWorld_.m[3][1] = max(worldTransform_.matWorld_.m[3][1], -kMoveLimitY);
 	worldTransform_.matWorld_.m[3][1] = min(worldTransform_.matWorld_.m[3][1], +kMoveLimitY);
 
-	worldTransformRole(&worldTransform_, 1.1, 1, 1);
-
 	debugText_->SetPos(50, 150);
 	worldTransformMove(&worldTransform_, move.x, move.y, move.z);
 }
